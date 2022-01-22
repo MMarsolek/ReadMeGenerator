@@ -1,8 +1,9 @@
-// TODO: Include packages needed for this application
 const fs = require('fs');
-const inquirer = require('inquirer')
-// TODO: Create an array of questions for user input
-//Inquirer .Prompt()?
+const inquirer = require('inquirer');
+const generateMarkdown = require('./generateMarkdown');
+
+
+//A list of questions that the user will answer
 const questions = [
     {
         type: 'input',
@@ -22,8 +23,14 @@ const questions = [
     {
         type: 'list',
         name: 'license',
-        choices: ['MIT', 'Apache', 'GNU General Public', 'GNU Lesser General Public', 'BSD 3-Clause License'],
+        choices: ['MIT', 'Apache', 'GPL', 'BSD 2-Clause','BSD 3-Clause','Creative Commons Licenses'],
         message: 'What kind of license should your project have?'
+    },
+    {
+        type: 'list',
+        name: 'color',
+        choices: ['green', 'yellow', 'red','blue','orange','lightgrey'],
+        message: 'What color would you like your license badge?'
     },
     {
         type: 'input',
@@ -47,18 +54,21 @@ const questions = [
     },
 ];
 
-// TODO: Create a function to write README file
+
+//Takes the desired fileName and answers given by the user and writes them to a file using fs
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data, null , '\t'), err =>{
+    fs.writeFile(fileName, data, err =>{
         err ? console.log(err) :  console.log('Generating ReadMe...');
     })
 }
 
-// TODO: Create a function to initialize app
+
+//Initializes the program and calls the functions to write the file and generate the markdown
 function init() {
     inquirer.prompt(questions).then(answers =>{
-        writeToFile(`${answers.projectName}.json`, answers);
+        writeToFile(`${answers.projectName}.md`, generateMarkdown(answers));
     })
+
 }
 
 // Function call to initialize app
