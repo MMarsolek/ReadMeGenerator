@@ -9,7 +9,12 @@ This program generates a ReadMe based on the users answers to a few questions th
 npm
 
 ## How to use
-This repo is a work in progress and changes will be made over time
+This repo is a work in progress and changes will be made over time. Please watch the video for instructions on how to use this program.
+
+
+
+https://user-images.githubusercontent.com/75141165/150624465-20ab074d-ba8a-4608-9307-5eca42187d8a.mp4
+
 
 ## Dependencies
 npm i
